@@ -1,0 +1,236 @@
+\documentclass[12pt]{article}
+\usepackage[ruled, linesnumbered, french, onelanguage]{algorithm2e}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{vmargin}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes} % add todos
+\usepackage{indentfirst} % indent first line of paragraph
+\usepackage{hyperref} % Add hyper ref
+\usepackage{tabularx} % For table auto line break
+\usepackage{scrextend}
+\usepackage[frenchb]{babel}
+\addto\captionsfrench{\def\tablename{Tableau}}
+\usepackage{float} % here for H placement parameter
+\usepackage[shortlabels]{enumitem} % dash to bullet for item
+\usepackage{enumitem} % dash to bullet
+\usepackage{pdflscape} % Turn page to landsscape
+\usepackage{vhistory} % historique
+\usepackage{multirow} % multirow des tables
+\usepackage{subfiles} % Use to separate .tex into section .tex file
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+
+\setlist[itemize]{label=\textbullet} % dash to bullet for item
+\graphicspath{{figures/}}
+
+\usepackage{mathtools}
+
+\usepackage{fancyhdr}
+
+\title{Plan de projet}
+
+\date{\today}
+\newcommand{\version}{1.0}
+
+\makeatletter
+\let\thetitle\@title
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\thetitle { \version}}
+\rhead{\thedate}
+\cfoot{\thepage}
+
+\begin{document}
+\begin{titlepage}
+
+
+    \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+     
+    %----------------------------------------------------------------------------------------
+    %   LOGO SECTION
+    %----------------------------------------------------------------------------------------
+    \centering  
+    \includegraphics[width=6cm]{uqac-logo} \\[2cm] % Include a department/university logo - this will require the graphicx package
+     
+    %---------------------------------------------------------------------------------------- 
+
+
+    \center % Center everything on the page 
+     
+    %----------------------------------------------------------------------------------------
+    %   HEADING SECTIONS
+    %----------------------------------------------------------------------------------------
+    
+    \textsc{\LARGE Génie informatique} \\[1.5cm] % Name of your university/college
+    \textsc{\Large Applications réseaux et sécurité informatique} \\[0.5cm] % Major heading such as course name
+    \textsc{\large 6GEI466} \\[1cm] % Minor heading such as course title
+    
+    %----------------------------------------------------------------------------------------
+    %   TITLE SECTION
+    %----------------------------------------------------------------------------------------
+    
+    \HRule \\[0.4cm]
+    \Large \bfseries Projet de conception \\
+    \Large Application d'horaire de cours \\ % Title of your document
+    \HRule \\[2cm]
+     
+    %----------------------------------------------------------------------------------------
+    %   AUTHOR SECTION
+    %----------------------------------------------------------------------------------------
+   
+  	\begin{onehalfspacing}
+    \begin{table}[H]
+    \begin{tabular}{l l}
+
+        \large \emph{Préparé par :} & \quad \quad \quad \large \emph{Pour:} \\
+    	Alissa \textsc{Bonnel} & \quad \quad \quad Monsieur Jean-Luc \textsc{Cyr}, \\
+        Jean-Sébastien \textsc{St-Pierre} & \quad \quad \quad \textsc{Université du Québec à Chicoutimi} \\
+        Alexis \textsc{Valotaire} \\
+        \textsc{génie informatique}  \\ \\ \\ \\
+    
+    \end{tabular}
+	\end{table}
+	\end{onehalfspacing}
+   
+
+    %----------------------------------------------------------------------------------------
+    %   DATE SECTION
+    %----------------------------------------------------------------------------------------
+
+    {\large \today} % Date, change the \today to a set date if you want to be precise
+    
+    \vfill % Fill the rest of the page with whitespace
+
+
+\end{titlepage}
+
+
+\newpage
+\section*{Historique des versions}
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|p{7.6cm}|}
+        \hline
+        \textbf{Version} & \textbf{Date} & \textbf{Auteur(s)} & \textbf{Modifications} \\ \hline
+        1.0 & 04-11-2019 & AB, JSSP, AV & Création du document \\ \hline
+    \end{tabular}
+\end{table}
+
+
+\section*{Définitions}
+\begin{table}[H]
+\begin{tabular}{|l|p{12.5cm}|}
+\hline
+\textbf{Terme} & \textbf{Définition} \\ \hline
+
+\textit{Framework}       &   Ensemble cohérent de composants éprouvés et réutilisables ainsi que
+de préconisations servant à créer les fondations et les grandes lignes
+d'un logiciel ou de certains de ses composants \cite{defFramework}. \\ \hline
+
+
+\textit{Front-end}       &   Partie du développement applicatif web visant à implémenter les
+mécanismes d'interaction avec l'utilisateur, habituellement sous forme
+d'interfaces graphiques. Le Front-End s'exécute le plus souvent sur un
+ordinateur client et communique avec un serveur traitant les requêtes et
+les données \cite{defServerless}. \\ \hline
+
+
+\textit{Back-end}       &   Partie du développement applicatif web visant à implémenter les
+mécanismes de traitement, de logique et d'accès aux données, qui est
+habituellement exécutée sur un serveur. Le Front-End et le Back-End d'une même
+application communiquent entre eux au moyen d'un protocole de
+communication réseau \cite{defServerless}. \\ \hline
+
+
+\textit{Cloud server}      &   Terme désignant une architecture faisant appel à une
+infrastructure infonuagique où un serveur virtuel, dont les ressources peuvent
+être allouées dynamiquement par le fournisseur de services ("pay-as-you-go"),
+est utilisé en lieu et place d'un serveur physique disposant de
+ressources  statiques \cite{defServerless}. \\ \hline
+
+
+\end{tabular}
+\end{table}
+
+
+\section*{Abréviations et acronymes}
+\begin{table}[H]
+\begin{tabular}{|l l|}
+\hline
+\textbf{Abréviation/acronyme} & \textbf{Définition} \\  \hline
+SPA & Single page application \\
+BCAPG & Bureau canadien d'agrément des programmes de génie \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+\newpage
+    
+\section{Introduction}
+
+\subsection{Vue d'ensemble du projet}
+
+\subsection{Références}
+
+\subsection{Portée}
+
+\subsection{Livrables}
+
+\newpage
+
+\section{Organisation du projet}
+
+\section{Stratégie de contrôle des versions}
+
+\section{Directives de livraison}
+
+\newpage
+
+\section{Ressources matérielles, calendrier et budget}
+
+\subsection{Ressources matérielles}
+
+\subsection{Calendrier des taches du projet}
+
+\subsection{Budget}
+
+\newpage
+
+\section{Gestion des risques}
+
+\subsection{Risque :}
+
+\subsubsection*{Description :}
+
+\subsubsection*{Probabilité :}
+
+\subsubsection*{Conséquence :}
+
+\subsubsection*{Exposition :}
+
+\subsubsection*{Méthodes de contention :}
+
+
+\end{document}
