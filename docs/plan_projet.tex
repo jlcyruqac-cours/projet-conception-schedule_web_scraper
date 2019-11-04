@@ -140,28 +140,28 @@
 
 \textit{Framework}       &   Ensemble cohérent de composants éprouvés et réutilisables ainsi que
 de préconisations servant à créer les fondations et les grandes lignes
-d'un logiciel ou de certains de ses composants \cite{defFramework}. \\ \hline
+d'un logiciel ou de certains de ses composants. \\ \hline
 
 
 \textit{Front-end}       &   Partie du développement applicatif web visant à implémenter les
 mécanismes d'interaction avec l'utilisateur, habituellement sous forme
 d'interfaces graphiques. Le Front-End s'exécute le plus souvent sur un
 ordinateur client et communique avec un serveur traitant les requêtes et
-les données \cite{defServerless}. \\ \hline
+les données. \\ \hline
 
 
 \textit{Back-end}       &   Partie du développement applicatif web visant à implémenter les
 mécanismes de traitement, de logique et d'accès aux données, qui est
 habituellement exécutée sur un serveur. Le Front-End et le Back-End d'une même
 application communiquent entre eux au moyen d'un protocole de
-communication réseau \cite{defServerless}. \\ \hline
+communication réseau. \\ \hline
 
 
 \textit{Cloud server}      &   Terme désignant une architecture faisant appel à une
 infrastructure infonuagique où un serveur virtuel, dont les ressources peuvent
 être allouées dynamiquement par le fournisseur de services ("pay-as-you-go"),
 est utilisé en lieu et place d'un serveur physique disposant de
-ressources  statiques \cite{defServerless}. \\ \hline
+ressources  statiques. \\ \hline
 
 
 \end{tabular}
@@ -191,26 +191,81 @@ BCAPG & Bureau canadien d'agrément des programmes de génie \\ \hline
 \section{Introduction}
 
 \subsection{Vue d'ensemble du projet}
+Le projet consiste au développement d'une application web permettant à l'utilisateur d'accéder
+à son horaire de cours rapidement et facilement. L'utilisateur pourra se créer un compte et associer
+des cours parmis une liste à son compte ce qui générera un horaire. La liste de cours sera construite
+à partir du site officeil de l'UQAC à l'aide d'un \textit{scraper} qui extraiera l'horaire des cours
+de code source HTML des pages web.
 
 \subsection{Références}
 
 \subsection{Portée}
+L'application sera utilisable par tous ceux fréquentant de l'UQAC, étudiants, professeur, etc.
+Son fonctionnement sera limité par les informations des cours trouvées sur le site officiel de 
+l'UQAC, hors si le site change, une mise à jour sera nécessaire.
 
 \subsection{Livrables}
+Lors de la complétion du projet, la documentation de l'application sur son fonctionnement et son 
+déploiement sera fournie ainsi que le code source. 
 
 \newpage
 
 \section{Organisation du projet}
 
-\section{Stratégie de contrôle des versions}
+\subsection{Composition de l'équipe du projet}
 
-\section{Directives de livraison}
+Notre équipe se compose de trois étudiants en génie informatique à leur dernière
+année du baccalauréat: \\
+    
+% TODO Separation des roles, juste competence de liste
+
+\noindent \textbf{Alexis Valotaire} \\
+Compétences/Préférences :
+\begin{itemize}
+    \item Maîtrise du Python
+    \item Connaissance en HTML, CSS, JavaScript
+    \item Connaissances en design web
+    \item Connaissance en configuration et maintenance de serveurs
+    \item Connaissance en gestion de base de données
+    \item Connaissance en réseautique
+    \item Initié en industrie aux bases de l’industrie 4.0, IoT, cloud
+    computing, etc \\
+\end{itemize}
+
+\noindent \textbf{Jean-Sébastien St-Pierre} \\
+Compétences/Préférences :
+\begin{itemize}
+    \item Maîtrise des langages C/C++
+    \item Connaissances en Python et Javascript
+    \item Connaissances en systèmes de gestion de bases de données et SQL
+    \item Connaissances en conception de bases de données
+    \item Connaissances en réseautique
+    \item Initié en industrie aux bases de l’industrie 4.0, IoT, cloud
+    computing, etc. \\
+\end{itemize}
+
+\noindent \textbf{Alissa Bonnel} \\
+Compétences/Préférences :
+\begin{itemize}
+    \item Maîtrise des langages C/C++, PHP
+    \item Connaissances en Python et Web 
+\end{itemize}
+
+\subsection{Stratégie de contrôle des versions}
+
+Le contrôle des versions se fera avec le système de gestion de version qu'est GitHub autant
+pour la documentation que pour le code du projet.
+
+\subsection{Directives de livraison}
 
 \newpage
 
 \section{Ressources matérielles, calendrier et budget}
 
 \subsection{Ressources matérielles}
+
+Aucune ressources matérielles physiques ne sera nécessaire. Seul un serveur infonuagique sera nécessaire
+afin d'héberger l'application.
 
 \subsection{Calendrier des taches du projet}
 
@@ -219,6 +274,8 @@ BCAPG & Bureau canadien d'agrément des programmes de génie \\ \hline
 \newpage
 
 \section{Gestion des risques}
+
+% TODO Ajouter les risques trouves dans le devoir?
 
 \subsection{Risque :}
 
