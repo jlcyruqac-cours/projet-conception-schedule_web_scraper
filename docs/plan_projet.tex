@@ -87,7 +87,7 @@
     
     \HRule \\[0.4cm]
     \Large \bfseries Projet de conception \\
-    \Large Application d'horaire de cours \\ % Title of your document
+    \Large Application de suivi des mises à jour des locaux et horaires de cours à l'UQAC \\ % Title of your document
     \HRule \\[2cm]
      
     %----------------------------------------------------------------------------------------
@@ -140,28 +140,30 @@
 
 \textit{Framework}       &   Ensemble cohérent de composants éprouvés et réutilisables ainsi que
 de préconisations servant à créer les fondations et les grandes lignes
-d'un logiciel ou de certains de ses composants. \\ \hline
+d'un logiciel ou de certains de ses composants \cite{defFramework}. \\ \hline
 
 
 \textit{Front-end}       &   Partie du développement applicatif web visant à implémenter les
 mécanismes d'interaction avec l'utilisateur, habituellement sous forme
 d'interfaces graphiques. Le Front-End s'exécute le plus souvent sur un
 ordinateur client et communique avec un serveur traitant les requêtes et
-les données. \\ \hline
+les données \cite{defFrontBackEnd}. \\ \hline
 
 
 \textit{Back-end}       &   Partie du développement applicatif web visant à implémenter les
 mécanismes de traitement, de logique et d'accès aux données, qui est
 habituellement exécutée sur un serveur. Le Front-End et le Back-End d'une même
 application communiquent entre eux au moyen d'un protocole de
-communication réseau. \\ \hline
+communication réseau \cite{defFrontBackEnd}. \\ \hline
 
 
 \textit{Cloud server}      &   Terme désignant une architecture faisant appel à une
 infrastructure infonuagique où un serveur virtuel, dont les ressources peuvent
 être allouées dynamiquement par le fournisseur de services ("pay-as-you-go"),
 est utilisé en lieu et place d'un serveur physique disposant de
-ressources  statiques. \\ \hline
+ressources  statiques \cite{defServerless}. \\ \hline
+
+\textit{Web scraping}      &   Terme désignant un ensemble de techniques permettant l'extraction rapide de grandes quantités de données rendues disponibles par un site web, le plus souvent dans le code HTML.   \cite{scraping}. \\ \hline
 
 
 \end{tabular}
@@ -192,17 +194,18 @@ BCAPG & Bureau canadien d'agrément des programmes de génie \\ \hline
 
 \subsection{Vue d'ensemble du projet}
 Le projet consiste au développement d'une application web permettant à l'utilisateur d'accéder
-à son horaire de cours rapidement et facilement. L'utilisateur pourra se créer un compte et associer
-des cours parmis une liste à son compte ce qui générera un horaire. La liste de cours sera construite
-à partir du site officeil de l'UQAC à l'aide d'un \textit{scraper} qui extraiera l'horaire des cours
-de code source HTML des pages web.
+aux locaux et horaires de cours rapidement et facilement.  Dans le contexte quelque peu frénétique et, plus récemment, cahotique des débuts de trimestres à l'UQAC, il est parfois difficile pour les étudiants et enseignants de demeurer à l'affût des inévitables changements logistiques qui peuvent être apportés par l'administration sans aucun préavis.  L'application qui sera réalisée dans le cadre de ce projet vise à apporter une solution simple à cette problématique récurrente en permettant une détection automatique des changements, qui pourront être notifiés à l'usager selon ses préférences.  \\
+
+Concrètement, l'utilisateur pourra se créer un compte et y associer ses cours.  Une extraction (\textit{scraping}) sera effectuée périodiquement sur le contenu des pages web correspondantes du site institutionnel de l'UQAC dans le but de détecter tout changement apporté aux horaires et numéros de locaux.  L'utilisateur aura la possibilité de s'authentifier, puis de consulter son horaire (incluant les numéros des locaux).  Il pourra également choisir d'être notifié en temps réel de tout changement par le moyen de son choix (courriel, SMS, notification de l'application, etc.).
 
 \subsection{Références}
+Les références utilisées dans le cadre de ce rapport peuvent être consultées dans la bibliographie. 
 
 \subsection{Portée}
-L'application sera utilisable par tous ceux fréquentant de l'UQAC, étudiants, professeur, etc.
-Son fonctionnement sera limité par les informations des cours trouvées sur le site officiel de 
-l'UQAC, hors si le site change, une mise à jour sera nécessaire.
+L'application sera utilisable par toute personne impliquée dans les activitées de formation de l'UQAC (étudiants, professeurs, chargés de cours, etc.)  L'application ne vise en aucun temps à se substituer au portail officiel de l'institution; elle se veut plutôt une forme d'extension l'offre existante. \\
+
+Le bon fonctionnement de l'application sera dépendant de l'exactitude des informations publiées sur le site officiel de 
+l'UQAC.  Vu le recours à la technique du \textit{scraping}, des correctifs devront lui être apportés suite à tout changement dans la structure des documents web de l'institution.
 
 \subsection{Livrables}
 Lors de la complétion du projet, la documentation de l'application sur son fonctionnement et son 
@@ -289,5 +292,58 @@ afin d'héberger l'application.
 
 \subsubsection*{Méthodes de contention :}
 
+\newpage 
+
+% bibliography
+\def\bibindent{1em}
+\begin{thebibliography}{99\kern\bibindent}
+\makeatletter
+\let\old@biblabel\@biblabel
+\def\@biblabel#1{\old@biblabel{#1}\kern\bibindent}
+\let\old@bibitem\bibitem
+\def\bibitem#1{\old@bibitem{#1}\leavevmode\kern-\bibindent}
+\makeatother
+
+    
+    \bibitem{defFramework}
+    Formation Django. (s. d.) Qu'est-ce qu'un framework?. [En ligne].
+    Disponible: \url{http://www.formation-django.fr/generalites/framework.html}
+
+    \bibitem{defFrontBackEnd}
+    CONCEPTANEXT. (2019) What Is the Difference Between Front-End and Back-End Development?. [En ligne].
+    Disponible: \url{https://conceptainc.com/blog/difference-front-end-back-end-development/}
+    
+    \bibitem{defServerless}
+    Cloudflare. (s. d.) What is serverless computing?. [En ligne]. Disponible:
+    \url{https://www.cloudflare.com/learning/serverless/what-is-serverless}
+
+    \bibitem{scraping}                   
+    Kho, J. (2018) How to Web Scrape with Python in 4 Minutes. [En ligne]. Disponible:
+    \url{https://towardsdatascience.com/how-to-web-scrape-with-python-in-4-minutes-bc49186a8460}
+
+    \bibitem{uCalgary}                  
+    University of Calgary. (2015) Energy education - Hydroelectric reservoir.
+    [En ligne]. Disponible: \url{https://energyeducation.ca/encyclopedia/
+    Hydroelectric_reservoir}
+    
+    \bibitem{kundur}
+    P. Kundur, \textit{Power System Stability and Control}, New York, États-Unis
+    : McGraw-Hill, 1994.
+
+    \bibitem{hChute}                    
+    CTEC. (2007) Analyse de projets d'énergie propre: MManuel d'ingénierie et d'études de cas RETScreen®.
+    [En ligne]. Disponible: \url{http://publications.gc.ca/collections/collection_2007/nrcan-rncan/M39-98-2003F.pdf}
+
+    \bibitem{barrage}
+    Tennessee Valley Authority, version SVG par Tomia (adaptation française).
+    (2010) File:Hydroelectric dam.svg. [En ligne]. Disponible: \url{https://
+    commons.wikimedia.org/wiki/File:Hydroelectric_dam.svg}. Image sous licence
+    libre CC-BY-2.5 \url{https://creativecommons.org/licenses/by/2.5/legalcode}
+
+    \bibitem{sSeguinLogiOptim}                  
+    Séguin, S. “Conception d'un logiciel d'optimisation pour la production
+    hydroélectrique”. Département d’informatique et de mathématique, Université
+    du Québec à Chicoutimi, Chicoutimi, Québec, Rapport technique, 2019.
+\end{thebibliography}
 
 \end{document}
