@@ -298,17 +298,40 @@ Pour ce qui est du budget, n'ayant aucun matériel physique requis, rien est à 
 
 % TODO Ajouter les risques trouves dans le devoir?
 
-\subsection{Risque :}
+\subsection{Risque : Injection SQL}
 
-\subsubsection*{Description :}
+\subsubsection*{Description}
 
-\subsubsection*{Probabilité :}
+Une injection SQL se produit lorsqu'un utilisateur est appelé à entrer des données quelconques
+utilisées dans l'exécution d'une requête SQL. \\
 
-\subsubsection*{Conséquence :}
+Dans le cas où une injection SQL est possble, un utilisateur malveillant pourrait
+facilement effacer toutes les tables de la base de données utilisé par l'application.
+Ceci entraînerait le non fonctionnement de l'application puisque les utilisateurs
+ne pourront plus se connecter en raison du fait qu'ils n'existeraient tout simplement
+plus dans la table utilisée pour l'authentification.
 
-\subsubsection*{Exposition :}
+\subsubsection*{Probabilité}
 
-\subsubsection*{Méthodes de contention :}
+3/5
+
+\subsubsection*{Conséquence}
+
+4/5
+
+\subsubsection*{Exposition}
+
+5/5
+
+\subsubsection*{Méthodes de contention}
+
+La solution afin de contenir ce risque est de bien nettoyer toutes données en provenance
+des utilisateurs à l'aide d'expression réguliaire du côté serveur. Il est 
+aussi impératif d'ajouter des validations côté client à l'aide des types
+d'"input" des "form". Hors, si par exemple, si dans une entrée allant directement
+dans une requête SQL, un utilisateur entrait un apostrophe à la fin de son entrée,
+les validations devront supprimer cette apostrophe avant d'exécuter la requête, sinon
+une erreur surviendrais.
 
 \newpage 
 
