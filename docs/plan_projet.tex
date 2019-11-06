@@ -184,9 +184,9 @@ BCAPG & Bureau canadien d'agrément des programmes de génie \\ \hline
 
 \tableofcontents
 
-\listoffigures
+% \listoffigures
 
-\listoftables
+% \listoftables
 
 \newpage
     
@@ -252,7 +252,7 @@ Compétences/Préférences :
 \begin{itemize}
     \item Maîtrise des langages C/C++, Python
     \item Connaissances en Web; PHP, Javascript, HTML, CSS, Classic ASP
-    \item Connaissances générales en bases de données; MySQL, SQLServer \\
+    \item Connaissances générales en bases de données; MySQL, SQLServer
 \end{itemize}
 
 \subsection{Stratégie de contrôle des versions}
@@ -269,9 +269,9 @@ La livraison au promoteur de l'application et des documents connexes aura lieu e
 
 \subsection{Ressources matérielles}
 
-Aucune ressource matérielle particulière ne sera nécessaire puisque le développement se fera à partir des équipements appartenant aux concepteurs et/ou à l'UQAC, le cas échéant.  Par contre, un serveur infonuagique (\textit{Cloud server}) serait idéal afin d'héberger l'application, particulièrement en cours de développement.  Ce choix présente l'avantage d'être accessible par les développeurs en tout temps et en tous lieux, sans imposer de confinement à l'intérieur de l'environnement informatique de l'Université.
+Aucune ressources matérielle particulière ne sera nécessaire puisque le développement se fera à partir des équipements appartenant aux concepteurs et/ou à l'UQAC, le cas échéant.  Par contre, un serveur infonuagique (\textit{Cloud server}) serait idéal afin d'héberger l'application, particulièrement en cours de développement.  Ce choix présente l'avantage d'être accessible par les développeurs en tout temps et en tous lieux, sans imposer de confinement à l'intérieur de l'environnement informatique de l'Université.
 
-\subsection{Calendrier des taches du projet}
+\subsection{Calendrier des tâches du projet}
 
 Le projet a officiellement commencé dans la semaine du 23 octobre et devrait s'échelonner sur 8 semaines. La liste qui suit montre l'allure générale du déroulement du projet.
 
@@ -302,13 +302,13 @@ Pour ce qui est du budget, n'ayant aucun matériel physique requis, rien est à 
 
 \subsubsection*{Description}
 
-Une injection SQL se produit lorsqu'un utilisateur est appelé à entrer des données quelconques
-utilisées dans l'exécution d'une requête SQL. \\
+Une injection SQL peut se produire lorsqu'un utilisateur est appelé à entrer des données quelconques
+utilisées par une application dans l'exécution d'une requête SQL.  Lorsque cette vulnérabilité n'est pas gérée convenablement, un attaquant pourrait tenter d'inclure des fragments de code SQL dans les champs de saisie et éventuellement parvenir à faire exécuter une requête au contenu malicieux. \\
 
 Dans le cas où une injection SQL est possble, un utilisateur malveillant pourrait
-facilement effacer toutes les tables de la base de données utilisé par l'application.
+facilement effacer toutes les tables de la base de données utilisée par l'application.
 Ceci entraînerait le non fonctionnement de l'application puisque les utilisateurs
-ne pourront plus se connecter en raison du fait qu'ils n'existeraient tout simplement
+ne pourraient plus se connecter en raison du fait qu'ils n'existeraient tout simplement
 plus dans la table utilisée pour l'authentification.
 
 \subsubsection*{Probabilité}
@@ -326,12 +326,12 @@ plus dans la table utilisée pour l'authentification.
 \subsubsection*{Méthodes de contention}
 
 La solution afin de contenir ce risque est de bien nettoyer toutes données en provenance
-des utilisateurs à l'aide d'expression réguliaire du côté serveur. Il est 
+des utilisateurs, par exemple à l'aide d'expressions régulières exécutées du côté serveur. Il est 
 aussi impératif d'ajouter des validations côté client à l'aide des types
-d'"input" des "form". Hors, si par exemple, si dans une entrée allant directement
-dans une requête SQL, un utilisateur entrait un apostrophe à la fin de son entrée,
-les validations devront supprimer cette apostrophe avant d'exécuter la requête, sinon
-une erreur surviendrais.
+d'\textit{input} des \textit{form}. Or, par exemple, si dans une entrée allant directement
+dans une requête SQL un utilisateur entrait un apostrophe comme dernier caractère,
+les validations devraient supprimer cette apostrophe avant d'exécuter la requête, sinon
+une erreur surviendrait.
 
 \newpage 
 
