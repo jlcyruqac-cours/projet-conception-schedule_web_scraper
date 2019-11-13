@@ -1,9 +1,45 @@
-table.table {
-      border-collapse: separate;
-      border-spacing: 0;
+
+
+table > thead > tr > th{
+    text-align: center;
 }
 
-.border-red {
-    border: red solid 1px !important;
-    display: block;
+table > tbody > tr > td {
+    text-align: center;
+}
+
+table > tbody > tr {
+    text-align: center;
+}
+
+#header_session {
+    width: 16%;
+}
+
+#header_lundi {
+    width: 12%;
+}
+
+#header_mardi {
+    width: 12%;
+}
+
+#header_mercredi {
+    width: 12%;
+}
+
+#header_jeudi {
+    width: 12%;
+}
+
+#header_vendredi {
+    width: 12%;
+}
+
+#header_samedi {
+    width: 12%;
+}
+
+#header_dimanche {
+    width: 12%;
 }
