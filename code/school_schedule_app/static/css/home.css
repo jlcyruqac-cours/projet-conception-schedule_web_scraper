@@ -1,7 +1,9 @@
-.vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
+table.table {
+      border-collapse: separate;
+      border-spacing: 0;
+}
 
-  display: flex;
-  align-items: center;
+.border-red {
+    border: red solid 1px !important;
+    display: block;
 }
