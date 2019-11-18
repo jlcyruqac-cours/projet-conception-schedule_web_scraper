@@ -23,12 +23,13 @@ def index_post():
 @blueprint.route('/account/login', methods=['GET'])
 def login_get():
 
-    return render_template('account/login.html')
+    return render_template('account/login.html', vm=None)
 
 
 @blueprint.route('/account/login', methods=['POST'])
 def login_post():
     print("Logged!")
+    return redirect("/")
     # if not user:
     #     return render_template('account/login.html', vm=vm.to_dict())
     # else:
@@ -43,7 +44,7 @@ def login_post():
 # REGISTER
 @blueprint.route('/account/register', methods=['GET'])
 def register_get():
-    return render_template('account/register.html')
+    return render_template('account/register.html', vm=None)
 
 
 @blueprint.route('/account/register', methods=['POST'])
@@ -66,7 +67,7 @@ def forgot_password_post():
 
 @blueprint.route('/account/logout')
 def logout():
-    resp = redirect('/')
+    resp = redirect('/account/login')
     cookie_auth.logout(resp)
 
     return resp
