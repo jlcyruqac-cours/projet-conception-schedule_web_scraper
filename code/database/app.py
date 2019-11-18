@@ -2,6 +2,9 @@ from flask import Flask, render_template
 import os
 import sys
 
+from database.models import mongo_setup
+from database.models.users import User
+
 app = Flask(__name__)
 
 app.secret_key = 'super_awesome_project'
@@ -21,13 +24,15 @@ def configure():
     register_blueprints()
     print("Registered blueprints")
 
+    setup_db()
+
+def setup_db():
+    mongo_setup.global_init()
 
 def register_blueprints():
-    from views import home_views
-    from views import account_views
+    from views import database_views
 
-    app.register_blueprint(home_views.blueprint)
-    app.register_blueprint(account_views.blueprint)
+    app.register_blueprint(database_views.blueprint)
 
 
 @app.errorhandler(404)
