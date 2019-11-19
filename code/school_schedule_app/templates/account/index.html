@@ -1,0 +1,93 @@
+{% extends "shared/_login_layout.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block main_content %}
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <img class="col-lg-4 d-none d-lg-block" src="/static/img/hydroelec_dam.jpg">
+                        <div class="col-lg-8">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h3 class="h4 text-gray-900 mb-4">
+                                        Bonjour {{ vm.user.first_name }} {{ vm.user.last_name }}!</h3>
+                                </div>
+                                <div class="text-gray-900 text-center">
+                                    Votre adresse courriel : {{ vm.user.email }}
+                                </div>
+
+                                <div class="text-gray-900 text-center">
+                                    Date de création de votre compte : {{ vm.user.created_date }}
+                                </div>
+
+                                <div class="text-gray-900 text-center">
+                                    Vous avez {{ file_data }} fichier(s)
+                                </div>
+
+                                <div class="p-2 text-gray-900 text-center">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">
+                                        Changer de d'adresse courriel?
+                                    </button>
+                                </div>
+
+                                <div class="p-2 text-gray-900 text-center">
+                                    <a href="/" class="btn btn-primary">
+                                        Retour
+                                    </a>
+                                </div>
+                                {% if vm.error %}
+                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close"><span
+                                            aria-hidden="true">×</span></button>
+                                    {{ vm.error }}
+                                </div>
+                            {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change email modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Entrez votre nouvelle adresse courriel</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="update_email" class="user" action="" method="post">
+                        <div class="form-group">
+                            <input name="new_email" type="email" class="form-control form-control-user"
+                                   id="InputNewEmail" aria-describedby="emailHelp"
+                                   placeholder="Entrez votre adresse courriel..." required>
+                        </div>
+                        <button class="btn btn-primary btn-user btn-block">
+                            Soumettre
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
