@@ -12,9 +12,9 @@ from database.models.courses import Course
 blueprint = Blueprint('account', __name__, template_folder='templates')
 
 
-@blueprint.route('/database/<name>', methods=['GET'])
-def get_name(name):
-    result = User.objects().all()
+@blueprint.route('/database/get_courses', methods=['GET'])
+def get_name():
+    result = Course.objects().all()
     print(result)
 
     print(bson.json_util.dumps(result))

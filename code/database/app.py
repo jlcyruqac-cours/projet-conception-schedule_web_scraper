@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import os
 import sys
+import re
 
 from database.models import mongo_setup
 from database.models.users import User
@@ -12,6 +13,39 @@ app.secret_key = 'super_awesome_project'
 
 folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, folder)
+
+
+def load_courses():
+    courses_list = []
+    with open('courses_list.txt', 'r', encoding='iso-8859-1') as scraped_data:
+        line = scraped_data.readline()
+        cnt = 1
+        while line:
+            # print("Line {}: {}".format(cnt, line.strip()))
+            course = Course()
+            sigle = re.search('\d\w\w\w\d\d\d', line)
+            line_without_sigle = line[8:]
+
+            splited_line = line_without_sigle.split('(')
+            # print(result)
+            if sigle:
+                course.sigle = (sigle.group())
+                course.name = splited_line[0]
+
+                print(course.sigle)
+                print(course.name)
+                course.save()
+
+
+            else:
+                if line.strip() == "du":
+                    for index in range(12):
+                        if index == 1 or index == 2 or index == 4 or index == 5 or index == 7 or index == 9 or index == 11:
+                            # print(line)
+                            a=1
+                        line = scraped_data.readline()
+            courses_list.append(course)
+            line = scraped_data.readline()
 
 
 def main():
@@ -26,21 +60,10 @@ def configure():
     print("Registered blueprints")
 
     setup_db()
+    # load_courses()
 
 def setup_db():
     mongo_setup.global_init()
-    # user = User()
-    # user.first_name = "test3"
-    # user.last_name = "test3_last"
-    # user.email = "test3@gmail.com"
-    # user.courses = ['5dd3047ff733ff70c1d9676a', '5dd304b5c6dc473f891ed4dd']
-    # user.save()
-    course = Course()
-    course.sigle = '6GEI100'
-    course.name = "Cours de marde 1"
-    course.credit = 3.0
-    course.days = ['mardi', 'jeudi']
-    course.save()
 
 def register_blueprints():
     from views import database_views
