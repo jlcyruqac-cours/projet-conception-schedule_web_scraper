@@ -13,7 +13,9 @@ class Course(mongoengine.Document):
         'db_alias': 'core',
         'collection': 'courses',
         'indexes': [
+            '',
             'name',
             'credit'
         ]
     }
+    # TODO convertir jour/heure en code ex 101 = lundi am a 8h00 10 = 8h am 30 = 5 pm

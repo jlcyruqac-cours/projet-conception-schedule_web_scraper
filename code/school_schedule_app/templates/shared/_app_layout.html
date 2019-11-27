@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/static/vendor/sb_admin_2/css/sb-admin-2.min.css">
     <link rel="stylesheet" href="/static/css/home.css">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     {% block additional_css %}{% endblock %}
 
 </head>
@@ -27,7 +29,10 @@
             Horaire de cours
         </h2>
     </div>
-
+    <div class="ui-widget" align="right">
+        <label for="tags">&nbsp;&nbsp;&nbsp;&nbsp;Ajouter un cours: </label>
+        <input id="tags">
+    </div>
     <!-- Topbar user management -->
     <ul class="navbar-nav ml-auto">
         <!-- Nav Item - User Information -->
@@ -78,11 +83,24 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="/static/vendor/jquery/jquery.min.js"></script>
+{#<script src={{ url_for('static', filename='vendor/jquery/jquery.min.js') }}></script>#}
 <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
 <script src="/static/vendor/sb_admin_2/js/sb-admin-2.min.js"></script>
+
+<script>
+    $(function() {
+    if (window.jQuery) {
+        // jQuery is loaded
+        alert("Yeah!");
+    } else {
+        // jQuery is not loaded
+        alert("Doesn't Work");
+    }
+});
+</script>
 
 {% block additional_js %}{% endblock %}
 
