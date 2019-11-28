@@ -13,118 +13,116 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="/static/vendor/sb_admin_2/css/sb-admin-2.min.css">
-    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href={{ url_for('static', filename='vendor/sb_admin_2/css/sb-admin-2.min.css') }}>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }}>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href={{ url_for('static', filename='vendor/jquery-ui-1.12.1/jquery-ui.min.css') }}>
     {% block additional_css %}{% endblock %}
 
 </head>
 <body id="page-top">
-<!-- Page Wrapper -->
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <div class="d-none d-sm-inline-block form-inline mr-1">
-        <h2>
-            Horaire de cours
-        </h2>
-    </div>
+    <!-- Page Wrapper -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <div class="d-none d-sm-inline-block form-inline mr-1">
+            <h2>
+                Horaire de cours
+            </h2>
+        </div>
 
-    <div class="d-none d-sm-inline-block form-inline mr-1  ml-5">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_course">
-            Ajouter un cours
-        </button>
-    </div>
+        <div class="d-none d-sm-inline-block form-inline mr-1  ml-5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_course">
+                Ajouter un cours
+            </button>
+        </div>
 
-    <!-- Topbar user management -->
-    <ul class="navbar-nav ml-auto">
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                <i class="fas fa-user text-black-50"></i>
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a href="/account" class="dropdown-item">
-                    Compte
+        <!-- Topbar user management -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                    <i class="fas fa-user text-black-50"></i>
                 </a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    Se déconnecter
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a href="/account" class="dropdown-item">
+                        Compte
+                    </a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        Se déconnecter
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+        <!-- add course modal -->
+        <div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajout d'un cours</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+
+                        <form method="post">
+                            <select class="custom-select mr-5 mb-3" size="3" multiple>>
+                                <option selected>Sélectionnez un ou plusieurs cours</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Fermer</button>
+                            <button class="btn btn-primary" type="submit">Ajouter</button>
+                        </form>
+
+                    </div>
+                </div>
             </div>
-        </li>
-    </ul>
+        </div>
 
-    <!-- add course modal -->
-    <div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ajout d'un cours</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Sélectionnez un cours a ajouter
-                </div>
-                <div class="modal-footer">
-
-                    <form method="post">
-                        <select class="custom-select mr-5 mb-3" size="3" multiple>>
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Voulez-vous vraiment vous déconnecter?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Sélectionnez "Se déconnecter" ci-dessous si vous êtes prêt à vous
+                        déconnecter.
+                    </div>
+                    <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Fermer</button>
-                        <button class="btn btn-primary" type="submit">Ajouter</button>
-                    </form>
-
+                        <a class="btn btn-primary" href="/account/logout">Se déconnecter</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Voulez-vous vraiment vous déconnecter?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Sélectionnez "Se déconnecter" ci-dessous si vous êtes prêt à vous déconnecter.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Fermer</button>
-                    <a class="btn btn-primary" href="/account/logout">Se déconnecter</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    </nav>
 
-</nav>
-
-<!-- Workspace -->
-{% block workspace %}No content{% endblock %}
+    <!-- Workspace -->
+    {% block workspace %}No content{% endblock %}
 
 
-<!-- core JavaScript-->
-<script src={{ url_for('static', filename='vendor/jquery/jquery.min.js') }}></script>
-<script src={{ url_for('static', filename='vendor/sb_admin_2/js/sb-admin-2.min.js') }}></script>
-<script src={{ url_for('static', filename='vendor/jquery-ui-1.12.1/jquery-ui.min.js') }}></script>
-<script src={{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}></script>
-<!-- Custom scripts for all pages-->
-<script src={{ url_for('static', filename='vendor/sb_admin_2/js/sb-admin-2.min.js') }}></script>
+    <!-- core JavaScript-->
+    <script src={{ url_for('static', filename='vendor/jquery/jquery.min.js') }}></script>
+    <script src={{ url_for('static', filename='vendor/sb_admin_2/js/sb-admin-2.min.js') }}></script>
+    <script src={{ url_for('static', filename='vendor/jquery-ui-1.12.1/jquery-ui.min.js') }}></script>
+    <script src={{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}></script>
+    <!-- Custom scripts for all pages-->
+    <script src={{ url_for('static', filename='vendor/sb_admin_2/js/sb-admin-2.min.js') }}></script>
 
-{% block additional_js %}{% endblock %}
+    {% block additional_js %}{% endblock %}
 
-</body>
+    </body>
 </html>
