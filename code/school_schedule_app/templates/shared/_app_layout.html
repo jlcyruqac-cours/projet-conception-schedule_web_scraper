@@ -70,12 +70,14 @@
                 </div>
                 <div class="modal-footer">
 
-                    <form method="post">
-                        <select class="custom-select mr-5 mb-3" size="3" multiple>>
+                    <form method="post" name="course">
+                        <select name="course_select" class="custom-select mr-5 mb-3" size="3">
                             <option selected>Sélectionnez un ou plusieurs cours</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {% if courses %}
+                                {% for course in courses %}
+                                    <option selected value="{{ course["sigle"] }}">{{ course["name"] }}</option>
+                                {% endfor %}
+                            {% endif %}
                         </select>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Fermer</button>
                         <button class="btn btn-primary" type="submit">Ajouter</button>

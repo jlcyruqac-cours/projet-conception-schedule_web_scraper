@@ -2,10 +2,7 @@ import datetime
 import mongoengine
 
 class User(mongoengine.Document):
-    first_name = mongoengine.StringField()
-    last_name = mongoengine.StringField()
-    perm_code = mongoengine.StringField()
-    hashed_password = mongoengine.StringField()
+    name = mongoengine.StringField()
     email = mongoengine.StringField(unique=True)
     created_date = mongoengine.DateTimeField(default=datetime.datetime.now())
     courses = mongoengine.ListField(mongoengine.ObjectIdField())
@@ -15,7 +12,6 @@ class User(mongoengine.Document):
         'collection': 'users',
         'indexes': [
             'email',
-            'hashed_password',
-            'created_date'
+            'name'
         ]
     }

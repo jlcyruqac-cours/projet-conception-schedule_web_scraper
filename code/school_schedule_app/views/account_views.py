@@ -1,9 +1,8 @@
 import os
 
+import requests
 import requests_oauthlib
-from flask import render_template, Blueprint, redirect, session, request, make_response
-
-import school_schedule_app.infrastructure.cookie_auth as cookie_auth
+from flask import render_template, Blueprint, redirect, session, request
 
 FB_CLIENT_ID = os.environ.get("FB_CLIENT_ID")
 FB_CLIENT_SECRET = os.environ.get("FB_CLIENT_SECRET")
@@ -29,7 +28,7 @@ def login_get():
     except:
         return render_template('account/login.html', vm=None)
 
-
+# Call fb login
 @blueprint.route('/fb_login', methods=['GET', 'POST'])
 def fb_login_post():
     facebook = requests_oauthlib.OAuth2Session(
@@ -39,7 +38,7 @@ def fb_login_post():
 
     return redirect(authorization_url)
 
-
+# fb api callback
 @blueprint.route('/fb_callback')
 def callback(facebook_compliance_fix=None):
     facebook = requests_oauthlib.OAuth2Session(
@@ -64,13 +63,14 @@ def callback(facebook_compliance_fix=None):
     name = facebook_user_data["name"]
     picture_url = facebook_user_data.get("picture", {}).get("data", {}).get("url")
 
+    requests.post("http://localhost:6000/database/create_user", facebook_user_data)
+
     session['fb_user'] = facebook_user_data
 
     return redirect('/')
 
 
 # LOGOUT
-
 @blueprint.route('/logout')
 def logout():
     session.clear()

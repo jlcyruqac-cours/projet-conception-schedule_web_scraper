@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response, jsonify
 import os
 import sys
 import re
@@ -65,6 +65,14 @@ def configure():
 def setup_db():
     mongo_setup.global_init()
 
+    # course = Course()
+    # course.sigle = "6GEI445"
+    # course.group = "0"
+    # course.name = "Cours de marde 2"
+    # course.credit = 3.0
+    # course.dates = ["511", "212"]
+    # course.save()
+
 def register_blueprints():
     from views import database_views
 
@@ -72,9 +80,8 @@ def register_blueprints():
 
 
 @app.errorhandler(404)
-def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('error/404.html', vm=None)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 if __name__ == '__main__':
