@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import os
 import sys
 
+
 app = Flask(__name__)
 
 app.secret_key = 'super_awesome_project'
@@ -20,7 +21,6 @@ def configure():
 
     register_blueprints()
     print("Registered blueprints")
-
 
 def register_blueprints():
     from views import home_views

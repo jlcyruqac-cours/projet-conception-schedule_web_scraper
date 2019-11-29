@@ -1,73 +1,78 @@
-from flask import render_template, Blueprint, redirect, session
+import os
+
+import requests_oauthlib
+from flask import render_template, Blueprint, redirect, session, request, make_response
+from flask_login import login_manager
 
 import school_schedule_app.infrastructure.cookie_auth as cookie_auth
 
+FB_CLIENT_ID = ''
+FB_CLIENT_SECRET = ''
+
+FB_AUTHORIZATION_BASE_URL = "https://www.facebook.com/dialog/oauth"
+FB_TOKEN_URL = "https://graph.facebook.com/oauth/access_token"
+
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+FB_SCOPE = ["email"]
 
 blueprint = Blueprint('account', __name__, template_folder='templates')
 
 
-@blueprint.route('/account', methods=['GET'])
-def index_get():
-
-    return render_template('account/index.html')
-
-
-@blueprint.route('/account', methods=['POST'])
-def index_post():
-
-    return redirect('/account')
-
-
 # LOGIN
-
-@blueprint.route('/account/login', methods=['GET'])
+@blueprint.route('/login', methods=['GET'])
 def login_get():
+    if request.cookies:
+        return redirect('/')
 
-    return render_template('account/login.html', vm=None)
-
-
-@blueprint.route('/account/login', methods=['POST'])
-def login_post():
-    print("Logged!")
-    return redirect("/")
-    # if not user:
-    #     return render_template('account/login.html', vm=vm.to_dict())
-    # else:
-    #     # Create cookie
-    #     session.clear()
-    #     resp = redirect('/')
-    #     cookie_auth.set_auth(resp, user.id)
-    #
-    #     return resp
+    else:
+        return render_template('account/login.html', vm=None)
 
 
-# REGISTER
-@blueprint.route('/account/register', methods=['GET'])
-def register_get():
-    return render_template('account/register.html', vm=None)
+@blueprint.route('/fb_login', methods=['GET', 'POST'])
+def fb_login_post():
+    facebook = requests_oauthlib.OAuth2Session(
+        FB_CLIENT_ID, redirect_uri="http://localhost:5000/fb_callback", scope=FB_SCOPE
+    )
+    authorization_url, _ = facebook.authorization_url(FB_AUTHORIZATION_BASE_URL)
+
+    return redirect(authorization_url)
 
 
-@blueprint.route('/account/register', methods=['POST'])
-def register_post():
+@blueprint.route('/fb_callback')
+def callback(facebook_compliance_fix=None):
+    facebook = requests_oauthlib.OAuth2Session(
+        FB_CLIENT_ID, scope=FB_SCOPE, redirect_uri="http://localhost:5000/fb_callback"
+    )
+    print(facebook)
+    # we need to apply a fix for Facebook here
+    # facebook = facebook_compliance_fix(facebook)
 
-    return redirect('/account/login')
+    facebook.fetch_token(
+        FB_TOKEN_URL,
+        client_secret=FB_CLIENT_SECRET,
+        authorization_response=request.url,
+    )
 
+    # Fetch a protected resource, i.e. user profile, via Graph API
 
-# FORGOT PASSWORD
-@blueprint.route('/account/forgot_password', methods=['GET'])
-def forgot_password_get():
-    return render_template('account/forgot_password.html')
+    facebook_user_data = facebook.get(
+        "https://graph.facebook.com/me?fields=id,name,email,picture{url}"
+    ).json()
 
+    email = facebook_user_data["email"]
+    name = facebook_user_data["name"]
+    picture_url = facebook_user_data.get("picture", {}).get("data", {}).get("url")
 
-@blueprint.route('/account/forgot_password', methods=['POST'])
-def forgot_password_post():
-    return render_template('account/forgot_password.html')
+    session['fb_user'] = facebook_user_data
+
+    return redirect('/')
+
 
 # LOGOUT
 
-@blueprint.route('/account/logout')
+@blueprint.route('/logout')
 def logout():
-    resp = redirect('/account/login')
-    cookie_auth.logout(resp)
+    session.clear()
 
-    return resp
+    return redirect('/login')
