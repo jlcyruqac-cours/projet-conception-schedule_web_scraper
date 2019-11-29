@@ -10,7 +10,6 @@ app.secret_key = 'super_awesome_project'
 folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, folder)
 
-
 def main():
     configure()
     app.run(debug=True)
