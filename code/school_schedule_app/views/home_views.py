@@ -10,20 +10,24 @@ blueprint = Blueprint('home', __name__, template_folder='templates')
 
 @blueprint.route('/', methods=['GET'])
 def index_get():
-    try:
-        if (session['fb_user']):
-            # Get courses from database
-            courses = requests.get("http://localhost:6000/database/get_courses")
+    if session.get('fb_user'):
+        # Get courses from database
+        courses = requests.get("http://localhost:6000/database/get_courses")
+        # Transform obtained data into json
+        courses = courses.json()
+        print(courses)
+        # # Get user courses
+        user_courses = requests.post("http://localhost:6000/database/get_user_courses", session['fb_user'])
+        user_courses = user_courses.json()
+        user_courses_list = []
+        for user_course in user_courses:
+            user_courses_list.append(json.loads(user_course))
 
-            # Get user courses
-            user_courses = requests.post("http://localhost:6000/database/get_user_courses", session['fb_user'])
-            user_courses = user_courses
-            print(json.dumps(user_courses))
-            return render_template('home/index.html', name=session['fb_user']['name'],
-                                   picture_url=session['fb_user']['picture']['data']['url'], courses=courses.json(),
-                                   user_courses=user_courses)
+        return render_template('home/index.html', name=session['fb_user']['name'],
+                               picture_url=session['fb_user']['picture']['data']['url'], courses=courses,
+                               user_courses_list=user_courses_list)
 
-    except:
+    else:
         return redirect('/login')
 
 

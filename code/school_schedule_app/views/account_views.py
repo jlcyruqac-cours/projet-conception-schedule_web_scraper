@@ -7,7 +7,6 @@ from flask import render_template, Blueprint, redirect, session, request
 FB_CLIENT_ID = os.environ.get("FB_CLIENT_ID")
 FB_CLIENT_SECRET = os.environ.get("FB_CLIENT_SECRET")
 
-
 FB_AUTHORIZATION_BASE_URL = "https://www.facebook.com/dialog/oauth"
 FB_TOKEN_URL = "https://graph.facebook.com/oauth/access_token"
 
@@ -21,12 +20,14 @@ blueprint = Blueprint('account', __name__, template_folder='templates')
 # LOGIN
 @blueprint.route('/login', methods=['GET'])
 def login_get():
-    try:
-        if (session['fb_user']):
-            return redirect('/')
+    print(session.get('fb_user'))
+    if session.get('fb_user'):
+        print("oui?")
+        return redirect('/')
 
-    except:
+    else:
         return render_template('account/login.html', vm=None)
+
 
 # Call fb login
 @blueprint.route('/fb_login', methods=['GET', 'POST'])
@@ -37,6 +38,7 @@ def fb_login_post():
     authorization_url, _ = facebook.authorization_url(FB_AUTHORIZATION_BASE_URL)
 
     return redirect(authorization_url)
+
 
 # fb api callback
 @blueprint.route('/fb_callback')

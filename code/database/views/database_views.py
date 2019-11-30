@@ -14,9 +14,9 @@ blueprint = Blueprint('account', __name__, template_folder='templates')
 @blueprint.route('/database/get_courses', methods=['GET'])
 def get_courses():
     result = Course.objects().all()
+
     result = result.to_json()
 
-    # print(bson.json_util.dumps(result))
     return result
 
 
@@ -27,12 +27,13 @@ def get_user_courses():
     courses_list = []
 
     if user:
-        print(user.courses)
         for course in user.courses:
-            course_to_json = (Course.objects(id=course).first()).to_json()
+            course_to_json = (Course.objects(id=course).first())
+            course_to_json = course_to_json.to_json()
             courses_list.append(course_to_json)
+        courses_list = json.dumps(courses_list)
 
-    return json.dumps(courses_list)
+    return courses_list
 
 @blueprint.route('/database/create_user', methods=['POST'])
 def create_user():

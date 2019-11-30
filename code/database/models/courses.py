@@ -5,7 +5,7 @@ class Course(mongoengine.Document):
     sigle = mongoengine.StringField(unique=True)
     group = mongoengine.StringField()
     name = mongoengine.StringField()
-    credit = mongoengine.FloatField()
+    local = mongoengine.StringField()
     # Dates : ex 110 lundi 10e periode dheure
     dates = mongoengine.ListField()
 
@@ -14,7 +14,6 @@ class Course(mongoengine.Document):
         'collection': 'courses',
         'indexes': [
             'sigle',
-            'name',
-            'credit'
+            'name'
         ]
     }

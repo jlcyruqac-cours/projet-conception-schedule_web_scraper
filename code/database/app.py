@@ -69,14 +69,14 @@ def setup_db():
     # course.sigle = "6GEI445"
     # course.group = "0"
     # course.name = "Infographie"
-    # course.credit = 3.0
+    # course.local = "P2-1050"
     # course.dates = ["511", "512"]
     # course.save()
     #
     # course.sigle = "6GEI645"
     # course.group = "0"
     # course.name = "Signaux et systèmes"
-    # course.credit = 3.0
+    # course.local = "P3-4010"
     # course.dates = ["301", "206"]
     # course.save()
 
