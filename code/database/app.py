@@ -68,10 +68,18 @@ def setup_db():
     # course = Course()
     # course.sigle = "6GEI445"
     # course.group = "0"
-    # course.name = "Cours de marde 2"
+    # course.name = "Infographie"
     # course.credit = 3.0
-    # course.dates = ["511", "212"]
+    # course.dates = ["511", "512"]
     # course.save()
+    #
+    # course.sigle = "6GEI645"
+    # course.group = "0"
+    # course.name = "Signaux et systèmes"
+    # course.credit = 3.0
+    # course.dates = ["301", "206"]
+    # course.save()
+
 
 def register_blueprints():
     from views import database_views

@@ -6,6 +6,7 @@ class Course(mongoengine.Document):
     group = mongoengine.StringField()
     name = mongoengine.StringField()
     credit = mongoengine.FloatField()
+    # Dates : ex 110 lundi 10e periode dheure
     dates = mongoengine.ListField()
 
     meta = {
@@ -17,4 +18,3 @@ class Course(mongoengine.Document):
             'credit'
         ]
     }
-    # TODO convertir jour/heure en code ex 101 = lundi am a 8h00 10 = 8h am 3 0 = 5 pm

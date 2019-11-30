@@ -71,7 +71,7 @@
                 <div class="modal-footer">
 
                     <form method="post" name="course">
-                        <select name="course_select" class="custom-select mr-5 mb-3" size="3">
+                        <select name="course_select" class="custom-select mr-5 mb-3" size="3" data-live-search="true">
                             <option selected>Sélectionnez un ou plusieurs cours</option>
                             {% if courses %}
                                 {% for course in courses %}
@@ -82,7 +82,6 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Fermer</button>
                         <button class="btn btn-primary" type="submit">Ajouter</button>
                     </form>
-
                 </div>
             </div>
         </div>
