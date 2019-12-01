@@ -35,24 +35,38 @@ def dayTimeToCodes(day, begTime, endTime):
 		'samedi': '5',
 		'dimanche': '6',
 		'08:00': '00',
+		'08:30': '00',
 		'09:00': '00',
 		'09:15': '00',
 		'09:30': '01',
 		'10:45': '01',
 		'11:00': '02',
+		'11:45': '02',
 		'12:00': '02',
 		'12:15': '02',
+		'12:30': '02',
+		'12:45': '03',
 		'13:00': '03',
+		'14:00': '03',
 		'14:15': '03',
 		'14:30': '04',
+		'15:00': '04',
+		'15:30': '04',
 		'15:45': '04',
 		'16:00': '05',
+		'16:30': '05',
+		'16:45': '05',
+		'17:00': '05',
 		'17:15': '05',
 		'17:30': '06',
+		'18:00': '06',
+		'18:30': '06',
 		'18:45': '06',
 		'19:00': '07',
 		'20:15': '07',
+		'20:45': '08',
 		'20:30': '08',
+		'21:30': '08',
 		'21:45': '08'
 	}
 
@@ -75,73 +89,71 @@ def dayTimeToCodes(day, begTime, endTime):
 ##########################################################################################
 
 def scraper():
-	course_names = list_courses.find_all(class_ = "titrecours")
-	#print(course_names)
-	
+	course_names = list_courses.find_all(class_ = "titrecours")	
 
-	for course in course_names[:100]:
+	for course in course_names:
 		course.group = []
 		course.horaires = []
 		list_horaire = []
 		course.titre = ""
-		index1=0
-		index2=0
-		index3=0
-
+		
 		course.titre = course.text
+		course.horaires.append(course.titre.strip())
 		
 		for element in course.next_siblings:
-			#print("index1 = " + str(index1))
-			#index1+=1
+			
 			if type(element) == NavigableString:
-				#print("boobs")
 				continue
 
 			if element.has_attr('class') and element['class'][0] == "titrecours":
-				#print("patate")
 				break
 
 			if element.name == "p":
-				#print("bitch")
+
 				for child in element.children:
-					#print(child.name)
 
 					if type(child) != NavigableString and child.name != "a":
 						course.group.append(child.text)
+						course.horaires.append(child.text)
 		
 			if element.name == "table":
 				course.horaire = []
-				print("########################################################")
 				rows = element.find_all('td')
+
 				for row in rows:
-					
 					course.horaire.append(row.text)
-					#print(course.horaire)
 
 				#print(course.horaire)
-						
-					#course.horaire = str(course.horaire).split()
-					#print(course.horaire)
-				#print(course.horaire)
-				#print(course.horaire)
+
+				filtered_list = []
+
+				filtered_list = list(filter(lambda a: a != '\xa0', course.horaire))
+
+				course.horaire = list(filter(lambda a: a != '', filtered_list))
 
 				indexes = []
+				indexes1 = []
+				indexes2 = []
+				test = 0
+				test1 = 0
+				test2 = 0
 
 				for i, j in enumerate(course.horaire):
 					if j == "du":
-						patates = 0
+						test = 0
 						indexes.append(i)
 
-					elif j == "le":
-						patates = 1
-						indexes.append(i)
+					if j == "le":
+						test1 = 1
+						indexes1.append(i)
 
-				for index in indexes:
-					if patates == 0:
-						#print(len(course.horaire))
-						#print(course.horaire)
-						#if course.horaire[index] == "du":
-							#if len(course.horaire) > 8:
+					if j == "Horaire à déterminer":
+						test2 = 2
+						indexes2.append(i)
+				
+				if test == 0:
+					for index in indexes:
+					
 						if len(course.horaire) > 10:
 							course.beg_day = course.horaire[index + 1]
 							course.beg_date = course.horaire[index + 2]
@@ -162,54 +174,22 @@ def scraper():
 							course.local = course.horaire[index + 7]
 							course.horaires.append([course.beg_day, course.beg_date, course.end_day, course.end_date, course.local])
 							
-					elif patates == 1:
+				if test1 == 1:
+					for index in indexes1:
 						course.beg_day = course.horaire[index + 1]
 						course.beg_date = course.horaire[index + 2]
-						course.end_day = course.horaire[index + 4]
-						course.end_date = course.horaire[index + 5]
-						course.local = course.horaire[index + 7]
+						course.beg_time = course.horaire[index + 4]
+						course.end_time = course.horaire[index + 6]
+						course.local = course.horaire[index + 8]
 						course.horaires.append([dayTimeToCodes(course.beg_day, course.beg_time, course.end_time), course.local])
 
-					else:
-						course.horaire.append(["À déterminer"])
+				if test2 == 2:
+					for index in indexes2:
+						course.horaires.append(["À déterminer"])
 
-					# elif course.horaire[0] == "le":
-					# 	course.beg_day = course.horaire[1]
-					# 	course.beg_date = course.horaire[2]
-					# 	course.beg_time = course.horaire[4]
-					# 	course.end_time = course.horaire[6]
-					# 	course.local = course.horaire[8]
-					# 	course.horaire = [dayTimeToCodes(course.beg_day, course.beg_time, course.end_time), course.local]
-						
-					# else:
-					# 	course.horaire = ["À déterminer"]	
-						
-					# list_horaire.append(course.horaire)
-
-		print(course.titre)
-		print(course.group)
 		print(course.horaires)
 
-# if len(course.group) == len(list_horaire) + 1:
-# 	list_horaire.append("Horaire non disponible")
-
-		# jsoned = 'titre' + ':' + str(course.titre)
-
-		# # vector = [course.titre]
-		# # for i in range(len(course.group)):
-		# # 	vector.append(course.group[i])
-		# # 	vector.append(list_horaire[i])
-		# # print(vector)
-
-
-		# for i in range(len(course.group)):
-
-		# 	if len(list_horaire) != 0:
-		# 		jsoned += " " + 'group' + ':' + " " + str(course.group[i]) + " " + 'horaire' + ':' + " " + str(list_horaire[i])
-
-		# #print(jsoned)
-
-	return 
+	return(course.horaires)
 
 scraper()
 
