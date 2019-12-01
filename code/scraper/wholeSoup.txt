@@ -240,7 +240,7 @@ function focus_rech()
        Horaire officiel des cours
       </h1>
       <p>
-       Données extraites le 30 novembre 2019 à 15:45
+       Données extraites le 30 novembre 2019 à 22:45
       </p>
       <h3>
        Tous les centres d'études
