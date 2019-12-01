@@ -53,8 +53,7 @@ def add_course_to_user(course_sigle):
 
     user = User.objects(email=request.form['email']).first()
     course = Course.objects(sigle=course_sigle).first()
-    # test = Course.objects(id=user.courses[0]).first()
-    # print(test.name)
+
     user.update(add_to_set__courses=course.id)
-    # user.save()
+
     return "User successfully created"

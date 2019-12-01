@@ -65,7 +65,7 @@ def configure():
 def setup_db():
     mongo_setup.global_init()
 
-    # course = Course()
+    course = Course()
     # course.sigle = "6GEI445"
     # course.group = "0"
     # course.name = "Infographie"
@@ -73,11 +73,11 @@ def setup_db():
     # course.dates = ["511", "512"]
     # course.save()
     #
-    # course.sigle = "6GEI645"
+    # course.sigle = "6GEI676"
     # course.group = "0"
-    # course.name = "Signaux et systèmes"
-    # course.local = "P3-4010"
-    # course.dates = ["301", "206"]
+    # course.name = "Circuit électrique"
+    # course.local = "P1-5010"
+    # course.dates = ["401", "402"]
     # course.save()
 
 
