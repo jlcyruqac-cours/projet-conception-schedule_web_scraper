@@ -36,7 +36,7 @@
                     <td id="001"></td>
                     <td id="101"></td>
                     <td id="201"></td>
-                    <td id="301">jkhjkh</td>
+                    <td id="301"></td>
                     <td id="401"></td>
                     <td id="501"></td>
                     <td id="601"></td>
@@ -139,9 +139,12 @@
     <script>
         window.onload = function () {
             {% for user_course in user_courses_list %}
-                console.log("{{ user_course }}")
-                {% for user_course_date in user_course['dates'] %}
-                    document.getElementById("{{ user_course_date }}").innerHTML = "{{ user_course['name'] }} <br> {{ user_course['local'] }}";
+                console.log("{{ user_course['group'][1] }}");
+                {% for user_course_date_local in user_course['group'][1] %}
+                    console.log("local : {{ user_course_date_local }}");
+                    {% for user_course_date in user_course_date_local[1] %}
+                        document.getElementById("{{ user_course_date }}").innerHTML = "{{ user_course['name'] }} <br> {{ user_course_date_local[0] }}";
+                    {% endfor %}
                 {% endfor %}
             {% endfor %}
         };

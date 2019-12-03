@@ -57,3 +57,43 @@ def add_course_to_user(course_sigle):
     user.update(add_to_set__courses=course.id)
 
     return "User successfully created"
+
+@blueprint.route('/database/update_courses_data', methods=['POST'])
+def update_courses_data():
+    courses = requests.post("http://localhost:7000/scraper/get_courses")
+
+    courses = courses.json()
+    for course in courses:
+        mongo_course = Course()
+        group = []
+        group_index = []
+
+        tmp_course_sigle_title = course[0].split(' ', 1)
+        sigle = tmp_course_sigle_title[0]
+        title = tmp_course_sigle_title[1].split('(', 1)[0]
+
+        for index in range(len(course)):
+            if 'Group' in course[index]:
+                group_index.append(index)
+
+        for index in group_index:
+
+            group.append(course[index].split(' ')[1])
+
+            group.append([])
+            if len(course) > (index + 1):
+                if 'Groupe' not in course[2]:
+                    group[len(group) - 1].append(course[index + 1])
+            if len(course) > (index + 2):
+                if 'Groupe' not in course[3]:
+                    group[len(group) - 1].append(course[index + 2])
+            if len(course) > (index + 3):
+                if 'Groupe' not in course[4]:
+                    group[len(group) - 1].append(course[index + 3])
+
+        mongo_course.sigle = sigle
+        mongo_course.name = title
+        mongo_course.group = group
+        mongo_course.save()
+
+    return "Success"

@@ -24,6 +24,7 @@ def index_get():
         courses = requests.get("http://localhost:6000/database/get_courses")
         # Transform obtained data into json
         courses = courses.json()
+
         already_choosed_courses = []
         for user_course in user_courses_list:
             already_choosed_courses.append(user_course['name'])

@@ -65,20 +65,6 @@ def configure():
 def setup_db():
     mongo_setup.global_init()
 
-    course = Course()
-    # course.sigle = "6GEI445"
-    # course.group = "0"
-    # course.name = "Infographie"
-    # course.local = "P2-1050"
-    # course.dates = ["511", "512"]
-    # course.save()
-    #
-    # course.sigle = "6GEI676"
-    # course.group = "0"
-    # course.name = "Circuit électrique"
-    # course.local = "P1-5010"
-    # course.dates = ["401", "402"]
-    # course.save()
 
 
 def register_blueprints():

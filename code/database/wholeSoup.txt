@@ -240,7 +240,7 @@ function focus_rech()
        Horaire officiel des cours
       </h1>
       <p>
-       Données extraites le 03 décembre 2019 à 13:15
+       Données extraites le 03 décembre 2019 à 10:15
       </p>
       <h3>
        Tous les centres d'études
@@ -63731,7 +63731,7 @@ function focus_rech()
            mercredi
           </td>
           <td class="date" nowrap="">
-           27-11-2019
+           11-12-2019
           </td>
           <td class="petitmot">
            de
@@ -63749,7 +63749,7 @@ function focus_rech()
            Local:
           </td>
           <td class="localno" nowrap="">
-           à venir
+           H1-1030
           </td>
           <td class="localdesc" nowrap="">
           </td>
@@ -63795,85 +63795,8 @@ function focus_rech()
            (travaux dirigés)
           </td>
          </tr>
-         <tr>
-          <td class="petitmot">
-           le
-          </td>
-          <td class="jour">
-           jeudi
-          </td>
-          <td class="date" nowrap="">
-           05-12-2019
-          </td>
-          <td class="petitmot">
-          </td>
-          <td class="jour">
-          </td>
-          <td class="date">
-          </td>
-          <td class="petitmot">
-           de
-          </td>
-          <td class="heure" nowrap="">
-           16:00
-          </td>
-          <td class="petitmot">
-           à
-          </td>
-          <td class="heure" nowrap="">
-           18:45
-          </td>
-          <td class="local">
-           Local:
-          </td>
-          <td class="localno" nowrap="">
-           aucun
-          </td>
-          <td class="localdesc" nowrap="">
-          </td>
-         </tr>
-         <tr>
-          <td class="petitmot">
-           le
-          </td>
-          <td class="jour">
-           mercredi
-          </td>
-          <td class="date" nowrap="">
-           11-12-2019
-          </td>
-          <td class="petitmot">
-          </td>
-          <td class="jour">
-          </td>
-          <td class="date">
-          </td>
-          <td class="petitmot">
-           de
-          </td>
-          <td class="heure" nowrap="">
-           13:00
-          </td>
-          <td class="petitmot">
-           à
-          </td>
-          <td class="heure" nowrap="">
-           15:45
-          </td>
-          <td class="local">
-           Local:
-          </td>
-          <td class="localno" nowrap="">
-           à venir
-          </td>
-          <td class="localdesc" nowrap="">
-          </td>
-         </tr>
         </tbody>
        </table>
-       <span class="remarque">
-        Remarque : Le cours du 4 décembre aura lieu le jeudi 5 décembre au local P0-5000
-       </span>
        <span class="titrecours">
         8GIF225 Atelier de production de jeux vidéo I (3.0 Créd. - Premier cycle) (
         <a href="http://cours.uqac.ca/8GIF225" target="_blank">

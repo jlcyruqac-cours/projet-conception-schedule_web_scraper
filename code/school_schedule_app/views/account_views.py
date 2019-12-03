@@ -20,9 +20,7 @@ blueprint = Blueprint('account', __name__, template_folder='templates')
 # LOGIN
 @blueprint.route('/login', methods=['GET'])
 def login_get():
-    print(session.get('fb_user'))
     if session.get('fb_user'):
-        print("oui?")
         return redirect('/')
 
     else:
