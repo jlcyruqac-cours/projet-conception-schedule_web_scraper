@@ -1,6 +1,6 @@
 # Projet d'application d'horaire de cours à l'UQAC
 ---
-
+SIGLE/SESSION/GROUP  
 Ce projet permet un accès rapide à l'horaire de cours et des locaux des cours d'un étudiant
 
 ### Tips git  
